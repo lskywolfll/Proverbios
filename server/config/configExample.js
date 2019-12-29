@@ -10,4 +10,8 @@ const config = {
     // filesRoute: process.env.FILES_ROUTE || 'files',
 };
 
+process.env.SEED = process.env.SEED || 'este-es-el-seed-desarrollo';
+process.env.CADUCIDAD_TOKEN = '48h';
+process.env.NODE_ENV = process.env.NODE_ENV || 'dev';
+
 module.exports = config;

@@ -1,6 +1,6 @@
 const express = require('express');
 const app = express();
-const Usuario = require('../models/usuario');
+const Usuario = require('../models/usuarios');
 const bcrypt = require('bcrypt');
 const _ = require('underscore');
 const { verficarToken, verificarAdmin_Role } = require('../middleware/autenticacion');
