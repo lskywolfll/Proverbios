@@ -1,7 +1,6 @@
 const express = require('express');
 const app = express();
 const Proverbio = require('../models/proverbio');
-const bcrypt = require('bcrypt');
 const _ = require('underscore');
 const { Fecha_Formatear } = require('../Controllers/ControladorDeTiempo');
 const { verficarToken, verificarAdmin_Role } = require('../middleware/autenticacion');
