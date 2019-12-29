@@ -1,0 +1,3 @@
+# No se ratreara las siguientes carpetas:
+node_modules
+server/config/config.js

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Google Sign-in demo</title>
+    <!-- Partes necesarias de google -->
+    <meta name="google-signin-client_id"
+        content="735872792975-mqpeph9ia3tvp98o1folegui491s2bs3.apps.googleusercontent.com">
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+</head>
+
+<body>
+    <div class="g-signin2" data-onsuccess="onSignIn"></div>
+
+    <a href="#" onclick="signOut();">Sign out</a>
+
+    <script src="https://code.jquery.com/jquery-3.4.1.js"
+        integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
+    <script>
+
+        function onSignIn(googleUser) {
+            let profile = googleUser.getBasicProfile();
+
+            let id_token = googleUser.getAuthResponse().id_token;
+
+            // Solo para tomar el token y probarla con postman
+            // console.log(id_token);
+
+            // Crear una peticion para enviarle el token al backend
+            // var xhr = new XMLHttpRequest();
+            // xhr.open('POST', '/google');
+            // xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+            // xhr.onload = function () {
+            //     console.log('Signed in as: ' + xhr.responseText);
+            // };
+            // // Envio de datos a la api rest
+            // // xhr.send('idtoken=' + 1 +'&'+ 'nombre='+'hola');
+            // // Similar al enviar query por parametros
+            // xhr.send(`idtoken=${id_token}`);
+
+            $.ajax({
+                url: "/google",
+                type: "POST",
+                data: { idtoken: id_token },
+                success: function (data, textStatus, jqXHR) {
+                    console.log(data);
+                    // console.log(textStatus);
+                    // console.log(jqXHR);
+                },
+                error: function (jqXHR, textStatus, errorThrown) {
+                    console.log(`
+                        jqXHR: ${jqXHR}
+
+                        textStatus: ${textStatus}
+
+
+                        errorThrown: ${errorThrown}
+                    `);
+                }
+            });
+        }
+
+        function signOut() {
+            let auth2 = gapi.auth2.getAuthInstance();
+            auth2.signOut().then(function () {
+                console.log('User signed out.');
+            });
+        }
+
+    </script>
+</body>
+</html>
