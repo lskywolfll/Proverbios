@@ -11,8 +11,8 @@ const Fecha_Dia_DiaNumero_Mes = (fecha) =>{
     let fechaNum = date.getDate();
     let mes_name = date.getMonth();
     let fechaTexto = dias[date.getDay()] + " " + fechaNum +" "+ meses[mes_name];
-    return fechaTexto;
     
+    return fechaTexto;
 }
 
 const Fecha_Formatear = (fecha) => {
