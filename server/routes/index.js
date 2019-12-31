@@ -9,6 +9,7 @@ const routes = (server) => {
     server.use('/', Usuario);
     server.use('/', Login);
     server.use('/', Proverbio);
+    server.use('/', Roles);
 };
 
 module.exports = routes;
