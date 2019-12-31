@@ -143,7 +143,7 @@ app.delete('/Rol/:id', [verficarToken, verificarAdmin_Role], (req, res) => {
             ok: true,
             rol: rolDB
         });
-    })
+    });
 });
 
 module.exports = app;

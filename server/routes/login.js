@@ -115,7 +115,7 @@ app.post('/google', async (req, res) => {
                     ok: true,
                     usuario: usuarioDB,
                     token
-                })
+                });
             }
         } else {
             // Si el usuario es la primera vez que ingresa ala pagian web y quiere registrarse por google
@@ -147,7 +147,7 @@ app.post('/google', async (req, res) => {
                     ok: true,
                     usuario: usuarioDB,
                     token
-                })
+                });
             });
         }
     });

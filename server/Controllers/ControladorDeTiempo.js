@@ -1,5 +1,5 @@
 // const dias = ["Lunes", "Martes", "Miercoles", "Jueves", "Viernes", "Sabado","Domingo"];
-const diasNew = ["Domingo", "Lunes", "Martes", "Miercoles", "Jueves", "Viernes", "Sabado"];
+const dias = ["Domingo", "Lunes", "Martes", "Miercoles", "Jueves", "Viernes", "Sabado"];
 const mesesAbreviados = ["Ene.", "Feb.", "Mar.", "Abr.", "May.", "Jun.", "Jul.", "Ago.", "Sep.", "Oct.", "Nov.", "Dic."];
 const meses = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"];
 
@@ -10,7 +10,7 @@ const Fecha_Dia_DiaNumero_Mes = (fecha) =>{
 
     let fechaNum = date.getDate();
     let mes_name = date.getMonth();
-    let fechaTexto = diasNew[date.getDay()] + " " + fechaNum +" "+ meses[mes_name];
+    let fechaTexto = dias[date.getDay()] + " " + fechaNum +" "+ meses[mes_name];
     return fechaTexto;
     
 }
@@ -53,30 +53,20 @@ const Fecha_Formatear_Con_Horas = (fecha) => {
     return fechaFinal + ' ' + segundaParte;
 }
 
-// const QuitarHoras = (fecha) => {
-//     fecha.setHours(0);
-//     fecha.setMinutes(0);
-//     fecha.setSeconds(0);
-//     fecha.setMilliseconds(0);
-
-//     return fecha;
-// }
-
-
 //todas las fechas se manejan con el siguiente fornato |MES/DIA/AÑO
 const Fecha_Dia_DiaNumero_Mes_Anio = (fecha) =>{
     let date = new Date(fecha);
 
     let fechaNum = date.getDate();
     let mes_name = date.getMonth();
-    let fechaTexto = diasNew[date.getDay()] + " " + fechaNum + " " + meses[mes_name] + " de " + date.getFullYear();
+    let fechaTexto = dias[date.getDay()] + " " + fechaNum + " " + meses[mes_name] + " de " + date.getFullYear();
     return fechaTexto;
 }
 
 //LA FUNCION SE MANEJA CON FECHA DE JAVASCRIPT
 const Fecha_Nombre_Dia = (date) =>{
 
-    let diaNombre = diasNew[date.getDay()];
+    let diaNombre = dias[date.getDay()];
 
     return diaNombre;
 }
