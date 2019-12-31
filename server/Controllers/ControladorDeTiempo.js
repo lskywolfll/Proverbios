@@ -4,27 +4,27 @@ const mesesAbreviados = ["Ene.", "Feb.", "Mar.", "Abr.", "May.", "Jun.", "Jul.",
 const meses = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"];
 
 //todas las fechas se manejan con el siguiente fornato |MES/DIA/AÑO
-const Fecha_Dia_DiaNumero_Mes = (fecha) =>{
+const Fecha_Dia_DiaNumero_Mes = (fecha) => {
 
     let date = new Date(fecha);
 
     let fechaNum = date.getDate();
     let mes_name = date.getMonth();
-    let fechaTexto = dias[date.getDay()] + " " + fechaNum +" "+ meses[mes_name];
-    
+    let fechaTexto = dias[date.getDay()] + " " + fechaNum + " " + meses[mes_name];
+
     return fechaTexto;
 }
 
 const Fecha_Formatear = (fecha) => {
-    let mes = fecha.getMonth()+1;
+    let mes = fecha.getMonth() + 1;
     let dia = fecha.getDate();
     const anio = fecha.getFullYear();
-    
-    if(parseInt(dia) >= 1 && parseInt(dia) <= 9){
+
+    if (parseInt(dia) >= 1 && parseInt(dia) <= 9) {
         dia = 0 + dia.toString();
     }
 
-    if(parseInt(mes) >= 1 && parseInt(mes) <= 9){
+    if (parseInt(mes) >= 1 && parseInt(mes) <= 9) {
         mes = 0 + mes.toString();
     }
 
@@ -34,11 +34,11 @@ const Fecha_Formatear = (fecha) => {
 }
 
 const Fecha_Formatear_Con_Horas = (fecha) => {
-    const mes = fecha.getMonth()+1;
+    const mes = fecha.getMonth() + 1;
     const anio = fecha.getFullYear();
     let dia = fecha.getDate();
 
-    if(parseInt(dia) >= 1 && parseInt(dia) <= 9){
+    if (parseInt(dia) >= 1 && parseInt(dia) <= 9) {
         dia = 0 + dia.toString();
     }
 
@@ -54,18 +54,18 @@ const Fecha_Formatear_Con_Horas = (fecha) => {
 }
 
 //todas las fechas se manejan con el siguiente fornato |MES/DIA/AÑO
-const Fecha_Dia_DiaNumero_Mes_Anio = (fecha) =>{
+const Fecha_Dia_DiaNumero_Mes_Anio = (fecha) => {
     let date = new Date(fecha);
 
     let fechaNum = date.getDate();
     let mes_name = date.getMonth();
     let fechaTexto = dias[date.getDay()] + " " + fechaNum + " " + meses[mes_name] + " de " + date.getFullYear();
-    
+
     return fechaTexto;
 }
 
 //LA FUNCION SE MANEJA CON FECHA DE JAVASCRIPT
-const Fecha_Nombre_Dia = (date) =>{
+const Fecha_Nombre_Dia = (date) => {
 
     let diaNombre = dias[date.getDay()];
 
@@ -73,7 +73,7 @@ const Fecha_Nombre_Dia = (date) =>{
 }
 
 //LA FUNCION SE MANEJA CON FECHA DE JAVASCRIPT
-const Fecha_Dia_MesNombreAbreviado = (date) =>{
+const Fecha_Dia_MesNombreAbreviado = (date) => {
     let dia = date.getDate();
     let mesNombreAbreviado = mesesAbreviados[date.getMonth()];
 
@@ -83,7 +83,7 @@ const Fecha_Dia_MesNombreAbreviado = (date) =>{
 }
 
 //funcion encargada de rellenar los dias
-const rellenarDias = (fechaInicioSistema) =>{
+const rellenarDias = (fechaInicioSistema) => {
 
     const fechaActual = obtenerFechaActual();
 
@@ -92,19 +92,19 @@ const rellenarDias = (fechaInicioSistema) =>{
 
     //se agregaran al arreglo 15 dias hacia el futuro
     for (let i = 0; i <= 15; i++) {
-        let obj = {FechaCompleta:"", NombreDia:"", DiaMesAbreviado:"", Porcentaje:"", Estado:"",FechaJS:"",DescripcionFeriado:"",TIPO_DIA:"NORMAL"};
+        let obj = { FechaCompleta: "", NombreDia: "", DiaMesAbreviado: "", Porcentaje: "", Estado: "", FechaJS: "", DescripcionFeriado: "", TIPO_DIA: "NORMAL" };
 
-        if(i == 0){
-        obj.Estado = "HOY";
-        }else{
-        obj.Estado = "FUTURO";
+        if (i == 0) {
+            obj.Estado = "HOY";
+        } else {
+            obj.Estado = "FUTURO";
         }
 
-        obj = EsFindesemana(obj,fechaAux);
-        
+        obj = EsFindesemana(obj, fechaAux);
+
         //obtengo la fecha 
         let diaNombre = Fecha_Nombre_Dia(fechaAux);
-        
+
         //obtengo la fecha con su nombre abreviado
         let fechaDiaMesNombreAbreviado = Fecha_Dia_MesNombreAbreviado(fechaAux);
 
@@ -113,59 +113,59 @@ const rellenarDias = (fechaInicioSistema) =>{
         obj.FechaJS = fechaAux.toString();
         obj.NombreDia = diaNombre;
         obj.DiaMesAbreviado = fechaDiaMesNombreAbreviado;
-        fechaAux.setDate(fechaAux.getDate() + 1);  
+        fechaAux.setDate(fechaAux.getDate() + 1);
         arregloDias.push(obj);
     }
 
     fechaAux = obtenerFechaActual();
-   
+
 
     let fechaInicioSistemaDate = stringADate(fechaInicioSistema);
-    fechaAux.setHours(0,0,0,0);
+    fechaAux.setHours(0, 0, 0, 0);
 
 
     //se agregaran al arreglo 15 dias hacia el pasado
-        for (let i = 0; i <= 15; i++) {
+    for (let i = 0; i <= 15; i++) {
 
 
-    
-            fechaAux.setDate(fechaAux.getDate() - 1);  
 
-            let obj = {FechaCompleta:"", NombreDia:"", DiaMesAbreviado:"", Porcentaje:"", Estado:"",FechaJS:"",DescripcionFeriado:"",TIPO_DIA:"NORMAL"};
+        fechaAux.setDate(fechaAux.getDate() - 1);
 
-            if(i == 0){
-                obj.Estado = "MODIFICABLE";
-            }else{
-                obj.Estado = "PASADO";
-            }
-            
-            obj = EsFindesemana(obj,fechaAux);
+        let obj = { FechaCompleta: "", NombreDia: "", DiaMesAbreviado: "", Porcentaje: "", Estado: "", FechaJS: "", DescripcionFeriado: "", TIPO_DIA: "NORMAL" };
 
-            //obtengo la fecha 
-            let diaNombre = Fecha_Nombre_Dia(fechaAux);
-
-
-            //obtengo la fecha con su nombre abreviado
-            let fechaDiaMesNombreAbreviado = Fecha_Dia_MesNombreAbreviado(fechaAux);
-
-
-            //formateo la fecha con el formato (dd-mm-yyyy)
-            obj.FechaCompleta = Fecha_Formatear(fechaAux);
-            obj.FechaJS = fechaAux.toString();
-            obj.NombreDia = diaNombre;
-            obj.DiaMesAbreviado = fechaDiaMesNombreAbreviado;
-            
-            if(fechaAux.getTime() >= fechaInicioSistemaDate.getTime()){
-                arregloDias.unshift(obj);
-            }
+        if (i == 0) {
+            obj.Estado = "MODIFICABLE";
+        } else {
+            obj.Estado = "PASADO";
         }
+
+        obj = EsFindesemana(obj, fechaAux);
+
+        //obtengo la fecha 
+        let diaNombre = Fecha_Nombre_Dia(fechaAux);
+
+
+        //obtengo la fecha con su nombre abreviado
+        let fechaDiaMesNombreAbreviado = Fecha_Dia_MesNombreAbreviado(fechaAux);
+
+
+        //formateo la fecha con el formato (dd-mm-yyyy)
+        obj.FechaCompleta = Fecha_Formatear(fechaAux);
+        obj.FechaJS = fechaAux.toString();
+        obj.NombreDia = diaNombre;
+        obj.DiaMesAbreviado = fechaDiaMesNombreAbreviado;
+
+        if (fechaAux.getTime() >= fechaInicioSistemaDate.getTime()) {
+            arregloDias.unshift(obj);
+        }
+    }
 
 
     return arregloDias;
 }
 //convierte la fecha dd/mm/yyyy a  date en javascript
-const stringADate = (fechaString)=>{
-    var dateString = fechaString; 
+const stringADate = (fechaString) => {
+    var dateString = fechaString;
 
     var dateParts = dateString.split("/");
 
@@ -174,11 +174,11 @@ const stringADate = (fechaString)=>{
     return dateObject;
 }
 
-const EsFindesemana = (ObjetoConFecha,FechaVerificar) =>{
+const EsFindesemana = (ObjetoConFecha, FechaVerificar) => {
 
     let dia = FechaVerificar.getDay();
 
-    if(dia == 0 || dia == 6){
+    if (dia == 0 || dia == 6) {
         ObjetoConFecha.TIPO_DIA = "FIN_DE_SEMANA";
     }
 
@@ -186,12 +186,12 @@ const EsFindesemana = (ObjetoConFecha,FechaVerificar) =>{
 }
 
 
-const obtenerFechaActual = () =>{
+const obtenerFechaActual = () => {
     const fechaActual = new Date();
     return fechaActual;
 }
 
-    
+
 module.exports = {
     Fecha_Dia_DiaNumero_Mes,
     Fecha_Dia_DiaNumero_Mes_Anio,
