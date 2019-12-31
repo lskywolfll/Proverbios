@@ -60,6 +60,7 @@ const Fecha_Dia_DiaNumero_Mes_Anio = (fecha) =>{
     let fechaNum = date.getDate();
     let mes_name = date.getMonth();
     let fechaTexto = dias[date.getDay()] + " " + fechaNum + " " + meses[mes_name] + " de " + date.getFullYear();
+    
     return fechaTexto;
 }
 
