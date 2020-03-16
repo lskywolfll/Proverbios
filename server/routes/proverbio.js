@@ -14,7 +14,7 @@ app.get('/Proverbios', verficarToken,(req, res) => {
     Proverbio.find({  })
         .skip(desde)
         .limit(limite)
-        .populate('Usuarios')
+        .populate('usuario')
         .exec((err, proverbioDB) => {
             if(err){
                 return res.status(500).json({
