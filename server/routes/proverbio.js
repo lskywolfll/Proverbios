@@ -59,11 +59,9 @@ app.get('/Proverbio/:id',verficarToken, (req, res) => {
 
 app.post('/Proverbio',verficarToken, (req, res) => {
     const body = _.pick(req.body, ['autor', 'contenido']);
-    const fecha = Fecha_Formatear(new Date());
 
     const proverbio = new Proverbio({
         ...body,
-        fecha,
         usuario: req.usuario._id
     });
 
@@ -94,8 +92,14 @@ app.post('/Proverbio',verficarToken, (req, res) => {
 app.put('/Proverbio/:id',verficarToken, (req, res) => {
     const id = req.params.id;
     const body = _.pick(req.body, ['contenido', 'autor']);
+    const fecha = new Date();
 
-    Proverbio.findByIdAndUpdate(id, body,{ new: true, runValidators: true }, (err, proverbioDB) => {
+    const actualizacion = {
+        ...body,
+        fecha
+    }
+
+    Proverbio.findByIdAndUpdate(id, actualizacion,{ new: true, runValidators: true }, (err, proverbioDB) => {
         if(err){
             return res.status(500).json({
                 ok: false,

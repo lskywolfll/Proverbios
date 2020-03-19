@@ -16,8 +16,8 @@ let proverbioSchema = new Schema({
         required: [true, 'El contenido es necesaria']
     },
     fecha: {
-        type: String,
-        required: [true, 'La fecha es necesaria']
+        type: Date,
+        default: Date.now
     },
     usuario: {
         // Crear una busqueda dinamica mediante el typo id para cuando busqueos los datos de otra tabla(coleccion) tomara la base de este id para buscarla en la tabla respectiva que estemos haciendo un cruce de datos para obtenerlo
