@@ -2,10 +2,10 @@ const mongoose = require('mongoose');
 const uniqueValidator = require('mongoose-unique-validator');
 
 // Crear schema en mongo para que sea el objeto(Tabla) de la base de datos por su estructura
-let Schema = mongoose.Schema;
+const Schema = mongoose.Schema;
 
 // Se crean las propiedades del objeto de la entidad que tenemos en nuestra base de datos de las tabla ala cual estemos haciendo referencia
-let proverbioSchema = new Schema({
+const proverbioSchema = new Schema({
     // En las propiedades nosotros podemos establecer restricciones en su uso, ya sea tipo de dato y campo obligatorio
     autor: {
         type: String,
@@ -31,14 +31,6 @@ let proverbioSchema = new Schema({
 proverbioSchema.plugin(uniqueValidator, {
     message: '{PATH} debe de ser único'
 });
-
-// productoSchema.methods.toJSON = function(){
-    
-//     let product = this;
-//     let productObject = product.toObject();
-
-//     return productObject;
-// }
 
 // Al crear un modelo de datos debemos indicar primero el nombre clave que tendra y luego poner el schema en el cual se basa
 module.exports = mongoose.model('Proverbio', proverbioSchema);
